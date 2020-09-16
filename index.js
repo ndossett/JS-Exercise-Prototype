@@ -84,6 +84,10 @@ Car.prototype.fill = function(gallons){
   return this.tank += gallons;
 }
 
+Car.prototype.drive = function(distance){
+  
+}
+
 /*
   TASK 3
     - Write a Baby constructor subclassing Person.
@@ -91,19 +95,27 @@ Car.prototype.fill = function(gallons){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(babyAttributes) {
-  Person.call(this, babyAttributes);
-  this.isBaby = babyAttributes.isBaby
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy
 }
 
-Baby.prototype = Object.create(Person.prototype)
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
+
+const baby1 = new Baby('Tweety', 3, 'Sylvester');
+
+console.log(baby1.play());
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
+  1. Call - will immediately invoke the function & passes arguments 1 by 1
+  2. Apply- will immediately invoke the function & passes arguments as an array
   3. 
   4. 
 */
