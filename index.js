@@ -85,7 +85,15 @@ Car.prototype.fill = function(gallons){
 }
 
 Car.prototype.drive = function(distance){
-  
+  const drivableMiles = this.milesPerGallon * this.tank;
+  if(distance <= drivableMiles){
+    this.odometer = this.odometer + distance;
+    this.tank = this.tank - (distance / this.milesPerGallon);
+  }else{
+    this.odometer = this.odometer + drivableMiles;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles`;
+  }
 }
 
 /*
@@ -97,7 +105,7 @@ Car.prototype.drive = function(distance){
 */
 function Baby(name, age, favoriteToy) {
   Person.call(this, name, age);
-  this.favoriteToy = favoriteToy
+  this.favoriteToy = favoriteToy;
 }
 
 Baby.prototype = Object.create(Person.prototype);
@@ -114,10 +122,10 @@ console.log(baby1.play());
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. Call - will immediately invoke the function & passes arguments 1 by 1
-  2. Apply- will immediately invoke the function & passes arguments as an array
-  3. 
-  4. 
+  1. Window - "this" is a global object in non-strict mode and undefined in strict mode
+  2. Implicit- When used in object methods, 'this' is bound to the object that calls the method (whatever is left of the dot in dot notation).
+  3. Explicit - sets "this" to a certain value with call(immediatly invokes fucntion and passes in arguments 1 by 1), apply(immediatly invokes fucntion and passes in arguments as an array) or bind(passes in arguments 1 by 1. does not invoke fucntion immediately, but rather returns a brand new fucntion that can be invoked later)
+  4. New Binding - uses "new" keyword to build a new object and "this" points to it
 */
 
 
